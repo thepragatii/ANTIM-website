@@ -1,0 +1,183 @@
+import { auth, db, googleProvider } from "./firebase-config.js";
+import { 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signInWithPopup, 
+    signOut, 
+    sendPasswordResetEmail,
+    sendEmailVerification
+} from "firebase/auth";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+
+export function initAuthListeners() {
+    const modal = document.getElementById("auth-modal");
+    const closeBtn = document.getElementById("close-auth-modal");
+    const tabLogin = document.getElementById("tab-login-btn");
+    const tabSignup = document.getElementById("tab-signup-btn");
+    const loginForm = document.getElementById("login-form");
+    const signupForm = document.getElementById("signup-form");
+    const googleBtn = document.getElementById("google-auth-btn");
+    const forgotBtn = document.getElementById("forgot-password-btn");
+    const onboardingForm = document.getElementById("onboarding-form");
+
+    // Route Callouts opening the unified interface overlay
+    document.querySelectorAll(".auth-trigger").forEach(trigger => {
+        trigger.addEventListener("click", () => {
+            if (!auth.currentUser) {
+                modal.classList.remove("hidden");
+            } else {
+                // If the user is logged in, advance straight to the functional modules
+                const destination = trigger.getAttribute("data-action");
+                console.log(`Navigating user directly to target functional component: ${destination}`);
+            }
+        });
+    });
+
+    closeBtn.addEventListener("click", () => modal.classList.add("hidden"));
+
+    // Tab Switching Mechanics Logic
+    tabLogin.addEventListener("click", () => {
+        tabLogin.classList.add("active");
+        tabSignup.classList.remove("active");
+        loginForm.classList.remove("hidden");
+        signupForm.classList.add("hidden");
+    });
+
+    tabSignup.addEventListener("click", () => {
+        tabSignup.classList.add("active");
+        tabLogin.classList.remove("active");
+        signupForm.classList.remove("hidden");
+        loginForm.classList.add("hidden");
+    });
+
+    // Strategy 1: Email and Password Creation Operations Handler
+    signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const username = document.getElementById("signup-username").value.trim();
+        const email = document.getElementById("signup-email").value.trim();
+        const password = document.getElementById("signup-password").value;
+        
+        displayFeedback("", "clear");
+
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            
+            // Build initialization payload entry mapping layout inside Firestore
+            await setDoc(doc(db, "users", user.uid), {
+                uid: user.uid,
+                email: user.email,
+                username: username.toLowerCase(),
+                displayName: username,
+                bio: "",
+                avatarUrl: "",
+                createdAt: serverTimestamp(),
+                langPreference: window.AntimApp.currentLanguage,
+                stats: { memoriesCount: 0, lettersCount: 0, followersCount: 0, followingCount: 0 }
+            });
+
+            await sendEmailVerification(user);
+            displayFeedback("A digital verification transmission has been sent to your email container.", "success");
+            modal.classList.add("hidden");
+        } catch (error) {
+            displayFeedback(error.message, "error");
+        }
+    });
+
+    // Strategy 2: Email Sign-In Handling Pipeline Interface Logic
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("login-email").value.trim();
+        const password = document.getElementById("login-password").value;
+
+        displayFeedback("", "clear");
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            modal.classList.add("hidden");
+        } catch (error) {
+            displayFeedback(error.message, "error");
+        }
+    });
+
+    // Strategy 3: Federated OAuth Google Identity Provider Authentication Access Pipeline 
+    googleBtn.addEventListener("click", async () => {
+        displayFeedback("", "clear");
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+
+            // Generate structural fallback schema template if profile execution setup layout map node target path misses
+            await setDoc(doc(db, "users", user.uid), {
+                uid: user.uid,
+                email: user.email,
+                username: `user_${user.uid.substring(0, 7)}`,
+                displayName: user.displayName || "Anonymous Entity",
+                bio: "",
+                avatarUrl: user.photoURL || "",
+                createdAt: serverTimestamp(),
+                langPreference: window.AntimApp.currentLanguage,
+                stats: { memoriesCount: 0, lettersCount: 0, followersCount: 0, followingCount: 0 }
+            }, { merge: true });
+
+            modal.classList.add("hidden");
+        } catch (error) {
+            displayFeedback(error.message, "error");
+        }
+    });
+
+    // Recovery Pipeline Mechanics Logic Module
+    forgotBtn.addEventListener("click", async () => {
+        const email = document.getElementById("login-email").value.trim();
+        if(!email) {
+            displayFeedback("Please supply an email address path string within the login view input target framework area first.", "error");
+            return;
+        }
+        try {
+            await sendPasswordResetEmail(auth, email);
+            displayFeedback("Password restoration framework mapping link broadcasted to target system entry successfully.", "success");
+        } catch (error) {
+            displayFeedback(error.message, "error");
+        }
+    });
+
+    // Complete Onboarding Interface Pipeline Setup execution mapping action trigger handling logic
+    onboardingForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!auth.currentUser) return;
+        
+        const displayName = document.getElementById("onboard-displayname").value.trim();
+        const bio = document.getElementById("onboard-bio").value.trim();
+
+        try {
+            await setDoc(doc(db, "users", auth.currentUser.uid), {
+                displayName: displayName,
+                bio: bio
+            }, { merge: true });
+
+            window.AntimApp.switchView("hero-view");
+        } catch(error) {
+            console.error("Critical Profile Serialization Fault Exception:", error);
+        }
+    });
+
+    // Explicit User Termination Logout Trigger Routine execution logic loop hook setup handler 
+    document.getElementById("logout-btn").addEventListener("click", () => {
+        signOut(auth).then(() => {
+            window.AntimApp.switchView("hero-view");
+        });
+    });
+}
+
+// Visual Helper Logic for Modal Notifications Management
+function displayFeedback(msg, variation) {
+    const box = document.getElementById("auth-feedback");
+    box.className = "feedback-banner"; // wipe structural modifiers
+    if (variation === "clear") {
+        box.classList.add("hidden");
+        return;
+    }
+    box.textContent = msg;
+    box.classList.add(variation);
+    box.classList.remove("hidden");
+}
