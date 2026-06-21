@@ -1,9 +1,5 @@
-// 1. Mandatory Core Configuration Import (Sabse Upar) ✅
 import { auth, db, storage } from "./firebase-config.js";
-
-// 2. Single Global Clean Imports (No Duplicates) ❌
 import { initAuthMechanisms } from "./auth.js";
-
 import {
     collection,
     addDoc,
