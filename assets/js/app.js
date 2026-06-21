@@ -35,12 +35,7 @@ import {
 import { 
     ref, 
     uploadBytesResumable, 
-    getDownloadURL 
-} from "firebase/storage";
-
-let primaryMemoriesDataset = [];
-let localActiveLanguage = "EN";
-let realTimeUnsubscribeHandle = null;
+    getDownHandle = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     initializeParticlesBackground();
