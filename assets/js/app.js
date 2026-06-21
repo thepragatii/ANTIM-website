@@ -1,5 +1,7 @@
+// 1. Mandatory Core Configuration Import (Sabse Upar) ✅
 import { auth, db, storage } from "./firebase-config.js";
 
+// 2. Single Global Clean Imports (No Duplicates) ❌
 import { initAuthMechanisms } from "./auth.js";
 
 import {
@@ -20,29 +22,20 @@ import {
     getDownloadURL
 } from "firebase/storage";
 
-import { initAuthMechanisms } from "./auth.js";
-import { 
-    collection, 
-    addDoc, 
-    query, 
-    where, 
-    orderBy, 
-    onSnapshot, 
-    doc, 
-    updateDoc, 
-    deleteDoc 
-} from "firebase/firestore";
-import { 
-    ref, 
-    uploadBytesResumable, 
-    getDownHandle = null;
+// Global Application State
+let primaryMemoriesDataset = [];
+let localActiveLanguage = "EN";
+let realTimeUnsubscribeHandle = null;
 
+// --- Application Lifecycle ---
 document.addEventListener("DOMContentLoaded", () => {
     initializeParticlesBackground();
     initializeGeneralDomRouting();
     initializeInterfaceThemeEngine();
     initAuthMechanisms(handleUserSessionActivation, handleUserSessionTermination);
 });
+
+// --- Core Features & UI Logic (Completely Untouched & Intact) ---
 
 function initializeParticlesBackground() {
     if (document.getElementById("particles-js") && typeof particlesJS !== "undefined") {
@@ -185,6 +178,7 @@ function setInitialSystemDateValues() {
     }
 }
 
+// --- Section View Router Engine ---
 function executeDirectSectionRouting(sectionId) {
     const coreSections = ["hero", "auth-container", "vault", "timeline", "profile"];
     coreSections.forEach(id => {
@@ -210,6 +204,7 @@ function setActiveNavbarLink(elementId) {
     }
 }
 
+// --- Dynamic Visual Interface Theme Engine ---
 function initializeInterfaceThemeEngine() {
     const toggleBtn = document.getElementById("theme-toggle");
     const cachedConfigTheme = localStorage.getItem("antim-theme") || "dark";
@@ -225,6 +220,7 @@ function initializeInterfaceThemeEngine() {
     }
 }
 
+// --- Hindi / English Language Architecture Engine ---
 function executeLanguageArchitectureShift() {
     const elementsToTranslate = document.querySelectorAll("[data-en][data-hi]");
     elementsToTranslate.forEach(element => {
@@ -244,6 +240,7 @@ function executeLanguageArchitectureShift() {
     }
 }
 
+// --- Auth Callback Architectures ---
 function handleUserSessionActivation(user) {
     document.getElementById("nav-vault").classList.remove("hidden");
     document.getElementById("nav-timeline").classList.remove("hidden");
@@ -285,6 +282,7 @@ function handleUserSessionTermination() {
     }
 }
 
+// --- Firestore Subscriptions Engine (Locking query key to memoryDate) ✅ ---
 function initializeRealtimeDataSubscription(uid) {
     if (realTimeUnsubscribeHandle) realTimeUnsubscribeHandle();
 
@@ -323,6 +321,7 @@ function updateDashboardStatisticalCounters() {
     }
 }
 
+// --- Cloud Transactions & Storage Operations ---
 async function executeMemoryStorageTransaction(e) {
     e.preventDefault();
     const activeAuthUser = auth.currentUser;
@@ -405,6 +404,7 @@ function executeBinaryImageUploadTask(fileObject, userId) {
     });
 }
 
+// --- Dynamic Interface Card Node Generators ---
 function filterAndRenderTimelineInterface(filterQueryString = "") {
     const timelineContainer = document.getElementById("timeline-container");
     const timelineEmptyState = document.getElementById("timeline-empty");
@@ -494,6 +494,7 @@ function formatSystemDateDisplayString(dateStringValue) {
     return internalDateObj.toLocaleDateString(localActiveLanguage === "EN" ? "en-US" : "hi-IN", operationalFormattingOptions);
 }
 
+// --- Dialog Forms Modals Controllers ---
 function initiateEditWorkflowModal(memoryReferenceObject) {
     const modal = document.getElementById("edit-modal");
     if (!modal) return;
@@ -545,6 +546,7 @@ async function executeDataPurgeTransaction(documentId) {
     }
 }
 
+// --- Security Protocols ---
 function escapeSecurityStringMarkup(dangerousInputString) {
     if (!dangerousInputString) return "";
     return dangerousInputString
