@@ -1,3 +1,25 @@
+import { auth, db, storage } from "./firebase-config.js";
+
+import { initAuthMechanisms } from "./auth.js";
+
+import {
+    collection,
+    addDoc,
+    query,
+    where,
+    orderBy,
+    onSnapshot,
+    doc,
+    updateDoc,
+    deleteDoc
+} from "firebase/firestore";
+
+import {
+    ref,
+    uploadBytesResumable,
+    getDownloadURL
+} from "firebase/storage";
+
 import { initAuthMechanisms } from "./auth.js";
 import { 
     collection, 
