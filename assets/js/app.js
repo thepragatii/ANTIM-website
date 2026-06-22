@@ -1,3 +1,4 @@
+console.log("APP JS LOADED");
 import { auth, db, storage } from "./firebase-config.js";
 import { initAuthMechanisms } from "./auth.js";
 import {
