@@ -27,6 +27,9 @@ let realTimeUnsubscribeHandle = null;
 // --- Application Lifecycle ---
 document.addEventListener("DOMContentLoaded", () => {
     initializeParticlesBackground();
+    
+console.log("ROUTING STARTED");  
+    
     initializeGeneralDomRouting();
     initializeInterfaceThemeEngine();
     initAuthMechanisms(handleUserSessionActivation, handleUserSessionTermination);
@@ -112,6 +115,9 @@ function initializeGeneralDomRouting() {
 
     if (langToggle) {
         langToggle.addEventListener("click", () => {
+
+            console.log("LANG CLICKED");
+            
             localActiveLanguage = localActiveLanguage === "EN" ? "HI" : "EN";
             langToggle.textContent = localActiveLanguage === "EN" ? "HI" : "EN";
             executeLanguageArchitectureShift();
