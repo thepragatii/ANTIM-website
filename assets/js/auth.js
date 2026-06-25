@@ -111,17 +111,25 @@ export function initAuthMechanisms(onUserAuthenticated, onUserLoggedOut) {
 function configureAuthButtonState(isAuthenticated) {
     const btn = document.getElementById("auth-action-btn");
     if (!btn) return;
-    const currentLang = document.getElementById("lang-toggle").textContent === "EN" ? "HI" : "EN";
-    
+
+    const currentLang =
+        document.getElementById("lang-toggle").textContent === "HI"
+            ? "EN"
+            : "HI";
+
     if (isAuthenticated) {
         btn.setAttribute("data-en", "Logout");
         btn.setAttribute("data-hi", "लॉगआउट");
-        btn.textContent = currentLang === "HI" ? "Logout" : "लॉगआउट";
+        btn.textContent = currentLang === "EN"
+            ? "Logout"
+            : "लॉगआउट";
         btn.classList.add("btn-danger");
     } else {
         btn.setAttribute("data-en", "Login");
         btn.setAttribute("data-hi", "लॉगिन");
-        btn.textContent = currentLang === "HI" ? "Login" : "लॉगिन";
+        btn.textContent = currentLang === "EN"
+            ? "Login"
+            : "लॉगिन";
         btn.classList.remove("btn-danger");
     }
 }
@@ -150,12 +158,14 @@ function getAuthenticationErrorMessage(code) {
             return "No matching archival records found with these email metrics.";
         case "auth/wrong-password":
             return "Authentication rejected. Invalid core password sequence matches.";
+            case "auth/invalid-login-credentials":
+    return "Email ya password galat hai.";
         case "auth/email-already-in-use":
             return "This structural email asset is already allocated to another vault ecosystem.";
         case "auth/weak-password":
             return "The password array provided fails basic protective encryption weight criteria.";
         case "auth/invalid-credential":
-            return "Invalid security criteria verified. Check credentials configuration.";
+    return "Email ya password galat hai.";
         default:
             return "An internal verification system fault occurred. Trace pattern blocked.";
     }
