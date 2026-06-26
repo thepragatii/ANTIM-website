@@ -1,251 +1,937 @@
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head> <link rel="icon" href="favicon.ico">
+
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTIM — Some memories never leave.</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/auth.css">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>ANTIM | Some Memories Never Leave</title>
+
+    <meta name="description"
+        content="ANTIM - A private emotional memory journal where memories live forever.">
+
+    <meta name="theme-color" content="#09090b">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@500;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="assets/css/main.css">
+
+    <link rel="stylesheet"
+        href="assets/css/auth.css">
+
 </head>
+
 <body>
+
+    <!-- =========================
+         LOADER
+    ========================== -->
+
+    <div id="loading-screen">
+
+        <div class="loader-content">
+
+            <h1 class="loader-logo">
+                ANTIM
+            </h1>
+
+            <p>
+                Some memories never leave...
+            </p>
+
+            <div class="loader-bar">
+
+                <span></span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Background -->
+
     <div id="particles-js"></div>
 
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo" id="nav-logo">ANTIM</a>
-            <nav class="nav-menu" id="nav-menu">
-                <a href="#hero" class="nav-link lang-home" data-en="Home" data-hi="मुख्य पृष्ठ">Home</a>
-                <a href="#vault" class="nav-link lang-vault-nav hidden" id="nav-vault" data-en="Vault" data-hi="तिजोरी">Vault</a>
-                <a href="#timeline" class="nav-link lang-timeline-nav hidden" id="nav-timeline" data-en="Timeline" data-hi="समयरेखा">Timeline</a>
-                <a href="#profile" class="nav-link lang-profile-nav hidden" id="nav-profile" data-en="Profile" data-hi="प्रोफ़ाइल">Profile</a>
-                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
-                    <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                    <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                </button>
-                <button id="lang-toggle" class="lang-btn">HI</button>
-                <button id="auth-action-btn" class="nav-auth-btn lang-login-btn" data-en="Login" data-hi="लॉगिन">Login</button>
-            </nav>
-            <button class="hamburger" id="hamburger" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
+    <div class="background-overlay"></div>
+
+
+    <!-- =========================
+          SETTINGS PANEL
+    ========================== -->
+
+    <aside id="settings-panel">
+
+        <div class="settings-header">
+
+            <h2>
+                Settings
+            </h2>
+
+            <button id="close-settings">
+
+                ✕
+
             </button>
+
         </div>
+
+        <!-- Theme -->
+
+        <div class="setting-block">
+
+            <h3>
+                Theme
+            </h3>
+
+            <div class="theme-grid">
+
+                <button class="theme-card"
+                    data-theme="dark">
+                    Dark
+                </button>
+
+                <button class="theme-card"
+                    data-theme="light">
+                    Light
+                </button>
+
+                <button class="theme-card"
+                    data-theme="midnight">
+                    Midnight
+                </button>
+
+                <button class="theme-card"
+                    data-theme="ocean">
+                    Ocean
+                </button>
+
+                <button class="theme-card"
+                    data-theme="forest">
+                    Forest
+                </button>
+
+                <button class="theme-card"
+                    data-theme="rose">
+                    Rose
+                </button>
+
+                <button class="theme-card"
+                    data-theme="sunset">
+                    Sunset
+                </button>
+
+                <button class="theme-card"
+                    data-theme="galaxy">
+                    Galaxy
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Font -->
+
+        <div class="setting-block">
+
+            <h3>
+                Writing Font
+            </h3>
+
+            <select id="font-selector">
+
+                <option value="inter">
+                    Inter
+                </option>
+
+                <option value="cinzel">
+                    Cinzel
+                </option>
+
+                <option value="playfair">
+                    Playfair
+                </option>
+
+                <option value="caveat">
+                    Caveat
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Accent -->
+
+        <div class="setting-block">
+
+            <h3>
+                Accent Color
+            </h3>
+
+            <input
+                type="color"
+                id="accent-picker"
+                value="#8b5cf6">
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+           NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a
+                href="#hero"
+                class="nav-logo"
+                id="nav-logo">
+
+                ANTIM
+
+            </a>
+
+            <nav
+                id="nav-menu"
+                class="nav-menu">
+
+                <a
+                    href="#hero"
+                    id="nav-home"
+                    class="nav-link active"
+                    data-en="Home"
+                    data-hi="मुख्य">
+
+                    Home
+
+                </a>
+
+                <a
+                    href="#vault"
+                    id="nav-vault"
+                    class="nav-link hidden"
+                    data-en="Vault"
+                    data-hi="तिजोरी">
+
+                    Vault
+
+                </a>
+
+                <a
+                    href="#timeline"
+                    id="nav-timeline"
+                    class="nav-link hidden"
+                    data-en="Timeline"
+                    data-hi="समयरेखा">
+
+                    Timeline
+
+                </a>
+
+                <a
+                    href="#profile"
+                    id="nav-profile"
+                    class="nav-link hidden"
+                    data-en="Profile"
+                    data-hi="प्रोफ़ाइल">
+
+                    Profile
+
+                </a>
+
+                <button
+                    id="theme-toggle"
+                    class="nav-icon-btn">
+
+                    🌙
+
+                </button>
+
+                <button
+                    id="lang-toggle"
+                    class="lang-btn">
+
+                    HI
+
+                </button>
+
+                <button
+                    id="settings-btn"
+                    class="nav-icon-btn">
+
+                    ⚙️
+
+                </button>
+
+                <button
+                    id="auth-action-btn"
+                    class="nav-auth-btn"
+                    data-en="Login"
+                    data-hi="लॉगिन">
+
+                    Login
+
+                </button>
+
+            </nav>
+
+            <button
+                id="hamburger"
+                class="hamburger">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+        </div>
+
     </header>
 
+
+    <!-- =========================
+            HERO
+    ========================== -->
+
     <main>
-        <section id="hero" class="hero-section">
+
+        <section
+            id="hero"
+            class="hero-section">
+
             <div class="hero-content">
-                <h1 class="hero-title">ANTIM</h1>
-                <p class="hero-tagline" data-en="Some memories never leave." data-hi="कुछ यादें कभी नहीं छोड़तीं।">Some memories never leave.</p>
-                <p class="hero-desc" data-en="An elegant, eternal sanctuary for your deepest thoughts, cherished photographs, and sacred emotional milestones. Safe. Private. Forever." data-hi="आपके गहरे विचारों, पोषित तस्वीरों और पवित्र भावनात्मक मील के पत्थरों के लिए एक सुरुचिपूर्ण, शाश्वत अभयारण्य। सुरक्षित। निजी। हमेशा के लिए।">An elegant, eternal sanctuary for your deepest thoughts, cherished photographs, and sacred emotional milestones. Safe. Private. Forever.</p>
+
+                <span class="hero-badge">
+
+                    Private • Secure • Forever
+
+                </span>
+
+                <h1 class="hero-title">
+
+                    ANTIM
+
+                </h1>
+
+                <p
+                    class="hero-tagline"
+                    data-en="Some memories never leave."
+                    data-hi="कुछ यादें कभी नहीं छोड़तीं।">
+
+                    Some memories never leave.
+
+                </p>
+                <p class="hero-description"
+                    data-en="A secure and beautiful place to preserve your memories, emotions, photographs and life moments forever."
+                    data-hi="अपनी यादों, भावनाओं, तस्वीरों और जीवन के अनमोल पलों को हमेशा के लिए सुरक्षित रखने की एक खूबसूरत जगह।">
+
+                    A secure and beautiful place to preserve your memories,
+                    emotions, photographs and life moments forever.
+
+                </p>
+
                 <div class="hero-buttons">
-                    <button id="hero-primary-btn" class="btn btn-primary" data-en="Enter The Vault" data-hi="तिजोरी में प्रवेश करें">Enter The Vault</button>
+
+                    <button id="hero-primary-btn"
+                        class="btn btn-primary"
+                        data-en="Enter Your Vault"
+                        data-hi="अपनी तिजोरी खोलें">
+
+                        Enter Your Vault
+
+                    </button>
+
+                    <button class="btn btn-secondary"
+                        onclick="document.getElementById('timeline').scrollIntoView({behavior:'smooth'})">
+
+                        Explore
+
+                    </button>
+
                 </div>
+
             </div>
+
+            <div class="hero-right">
+
+                <div class="floating-card">
+
+                    <h3>❤️ Memory Vault</h3>
+
+                    <p>
+                        Every memory is stored with emotion,
+                        date and your personal story.
+                    </p>
+
+                </div>
+
+                <div class="floating-card">
+
+                    <h3>🌙 Private</h3>
+
+                    <p>
+                        Only you can access your memories.
+                    </p>
+
+                </div>
+
+                <div class="floating-card">
+
+                    <h3>✨ Forever</h3>
+
+                    <p>
+                        Some memories never leave...
+                    </p>
+
+                </div>
+
+            </div>
+
         </section>
 
-        <section id="auth-container" class="auth-section hidden">
-            <div class="auth-card">
-                <div class="auth-tabs">
-                    <button id="tab-login" class="auth-tab active" data-en="Login" data-hi="लॉगिन">Login</button>
-                    <button id="tab-signup" class="auth-tab" data-en="Sign Up" data-hi="साइन अप">Sign Up</button>
-                </div>
-                
-                <form id="login-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="login-email" data-en="Email Address" data-hi="ईमेल पता">Email Address</label>
-                        <input type="email" id="login-email" required placeholder="name@domain.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password" data-en="Password" data-hi="पासवर्ड">Password</label>
-                        <input type="password" id="login-password" required placeholder="••••••••">
-                    </div>
-                    <div id="login-error" class="auth-error hidden"></div>
-                    <button type="submit" class="btn btn-block btn-primary" data-en="Access Account" data-hi="खाता एक्सेस करें">Access Account</button>
-                </form>
 
-                <form id="signup-form" class="auth-form hidden">
-                    <div class="form-group">
-                        <label for="signup-name" data-en="Full Name" data-hi="पूरा नाम">Full Name</label>
-                        <input type="text" id="signup-name" required placeholder="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-email" data-en="Email Address" data-hi="ईमेल पता">Email Address</label>
-                        <input type="email" id="signup-email" required placeholder="name@domain.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-password" data-en="Password (Min 6 Characters)" data-hi="पासवर्ड (न्यूनतम 6 अक्षर)">Password (Min 6 Characters)</label>
-                        <input type="password" id="signup-password" required placeholder="••••••••">
-                    </div>
-                    <div id="signup-error" class="auth-error hidden"></div>
-                    <button type="submit" class="btn btn-block btn-primary" data-en="Create Sanctuary" data-hi="अभयारण्य बनाएं">Create Sanctuary</button>
-                </form>
-            </div>
-        </section>
 
-        <section id="vault" class="vault-section container hidden">
-            <div class="section-header">
-                <h2 data-en="Preserve a Memory" data-hi="एक स्मृति सुरक्षित करें">Preserve a Memory</h2>
-                <p data-en="Etch your feelings, moods, and images into eternity." data-hi="अपनी भावनाओं, मनोदशाओं और छवियों को अनंत काल में अंकित करें।">Etch your feelings, moods, and images into eternity.</p>
-            </div>
-            
-            <div class="vault-grid">
-                <form id="memory-form" class="vault-card memory-form-container">
-                    <div class="form-group">
-                        <label for="memory-title" data-en="Memory Title" data-hi="स्मृति का शीर्षक">Memory Title</label>
-                        <input type="text" id="memory-title" required data-en-placeholder="A silent winter evening..." data-hi-placeholder="एक शांत सर्दियों की शाम...">
-                    </div>
-                    <div class="form-group">
-                        <label for="memory-desc" data-en="The Journal Entry (Private Diary)" data-hi="डायरी प्रविष्टि (निजी डायरी)">The Journal Entry (Private Diary)</label>
-                        <textarea id="memory-desc" rows="5" required data-en-placeholder="Write down what your heart remembers..." data-hi-placeholder="लिखें जो आपका दिल याद रखता है..."></textarea>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="memory-date" data-en="Date of Occurrence" data-hi="घटना की तिथि">Date of Occurrence</label>
-                            <input type="date" id="memory-date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="memory-mood" data-en="Emotional Spectrum" data-hi="भावनात्मक स्पेक्ट्रम">Emotional Spectrum</label>
-                            <select id="memory-mood" required>
-                                <option value="Melancholic" data-en="Melancholic 🌧️" data-hi="उदासी 🌧️">Melancholic 🌧️</option>
-                                <option value="Nostalgic" data-en="Nostalgic ⏳" data-hi="अतीत की यादें ⏳">Nostalgic ⏳</option>
-                                <option value="Peaceful" data-en="Peaceful 🍃" data-hi="शांत 🍃">Peaceful 🍃</option>
-                                <option value="Joyous" data-en="Joyous ✨" data-hi="हर्षित ✨">Joyous ✨</option>
-                                <option value="Grateful" data-en="Grateful ❤️" data-hi="कृतज्ञ ❤️">Grateful ❤️</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label data-en="Attach Image Fragment" data-hi="छवि टुकड़ा संलग्न करें">Attach Image Fragment</label>
-                        <div class="file-dropzone" id="dropzone">
-                            <input type="file" id="memory-image" accept="image/*" class="file-input">
-                            <div class="dropzone-text">
-                                <svg class="upload-icon" viewBox="0 0 24 24" width="24" height="24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                                <span id="file-label-text" data-en="Click or Drag an image asset" data-hi="एक छवि एसेट क्लिक या ड्रैग करें">Click or Drag an image asset</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar-container hidden" id="upload-progress-container">
-                        <div class="progress-bar-fill" id="upload-progress-fill"></div>
-                    </div>
-                    <button type="submit" id="save-memory-btn" class="btn btn-primary btn-block" data-en="Seal Memory Into Firestore" data-hi="फायरस्टोर में स्मृति को सील करें">Seal Memory Into Firestore</button>
-                </form>
 
-                <div class="vault-info-panel">
-                    <div class="vault-card summary-card">
-                        <h3 data-en="Vault Statistics" data-hi="तिजोरी के आंकड़े">Vault Statistics</h3>
-                        <div class="stat-row">
-                            <span data-en="Total Relics Secured" data-hi="कुल सुरक्षित अवशेष">Total Relics Secured</span>
-                            <span class="stat-count" id="stat-total-count">0</span>
-                        </div>
-                        <div class="stat-row">
-                            <span data-en="Last Entry Status" data-hi="अंतिम प्रविष्टि स्थिति">Last Entry Status</span>
-                            <span class="stat-status text-green" id="stat-last-sync" data-en="Synced" data-hi="सिंक्रनाइज़">Synced</span>
-                        </div>
-                    </div>
-                    <div class="vault-card guidance-card">
-                        <h4 data-en="The Eternal Philosophy" data-hi="शाश्वत दर्शन">The Eternal Philosophy</h4>
-                        <p data-en="Every archive created inside ANTIM is completely private. End-to-end routing ensures your timeline remains locked to your single account authentication ecosystem." data-hi="ANTIM के अंदर बनाया गया हर संग्रह पूरी तरह से निजी है। एंड-टू-एंड रूटिंग सुनिश्चित करती है कि आपकी समयरेखा आपके एकल खाता प्रमाणीकरण पारिस्थितिकी तंत्र में बंद रहे।"></p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="timeline" class="timeline-section container hidden">
-            <div class="section-header">
-                <h2 data-en="The Chronological Passage" data-hi="कालानुक्रमिक मार्ग">The Chronological Passage</h2>
-                <div class="search-box-container">
-                    <input type="text" id="timeline-search" data-en-placeholder="Search records by title or mood..." data-hi-placeholder="शीर्षक या मनोदशा द्वारा रिकॉर्ड खोजें...">
-                </div>
-            </div>
+<!-- ===================================
+            AUTH SECTION
+=================================== -->
 
-            <div id="timeline-empty" class="empty-state">
-                <div class="empty-icon">⏳</div>
-                <h3 data-en="The Horizon is Empty" data-hi="क्षितिज खाली है">The Horizon is Empty</h3>
-                <p data-en="No historical timelines have been recorded yet. Begin by writing inside the vault." data-hi="अभी तक कोई ऐतिहासिक समयरेखा दर्ज नहीं की गई है। तिजोरी के भीतर लिखकर शुरुआत करें।"></p>
-            </div>
+<section
+id="auth-container"
+class="auth-section hidden">
 
-            <div id="timeline-container" class="timeline-stream hidden"></div>
-        </section>
+<div class="auth-wrapper">
 
-        <section id="profile" class="profile-section container hidden">
+<div class="auth-left">
+
+<h2
+data-en="Welcome Back"
+data-hi="वापसी पर स्वागत है">
+
+Welcome Back
+
+</h2>
+
+<p
+data-en="Login to continue your personal memory journey."
+data-hi="अपनी निजी यादों की यात्रा जारी रखने के लिए लॉगिन करें।">
+
+Login to continue your personal memory journey.
+
+</p>
+
+<img
+src="assets/images/auth-illustration.png"
+alt="Authentication Illustration"
+class="auth-image">
+
+</div>
+
+<div class="auth-right">
+
+<div class="auth-card">
+
+<div class="auth-tabs">
+
+<button
+id="tab-login"
+class="auth-tab active"
+data-en="Login"
+data-hi="लॉगिन">
+
+Login
+
+</button>
+
+<button
+id="tab-signup"
+class="auth-tab"
+data-en="Create Account"
+data-hi="नया खाता">
+
+Create Account
+
+</button>
+
+</div>
+
+
+
+
+
+<form
+id="login-form"
+class="auth-form">
+
+<div class="form-group">
+
+<label
+for="login-email">
+
+Email
+
+</label>
+
+<input
+type="email"
+id="login-email"
+placeholder="example@email.com"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label
+for="login-password">
+
+Password
+
+</label>
+
+<input
+type="password"
+id="login-password"
+placeholder="••••••••"
+required>
+
+</div>
+
+<div
+id="login-error"
+class="auth-error hidden">
+
+</div>
+
+<button
+type="submit"
+class="btn btn-primary btn-block">
+
+Login Securely
+
+</button>
+
+</form>
+
+
+
+
+
+<form
+id="signup-form"
+class="auth-form hidden">
+
+<div class="form-group">
+
+<label
+for="signup-name">
+
+Full Name
+
+</label>
+
+<input
+type="text"
+id="signup-name"
+placeholder="Your Name"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label
+for="signup-email">
+
+Email
+
+</label>
+
+<input
+type="email"
+id="signup-email"
+placeholder="example@email.com"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label
+for="signup-password">
+
+Password
+
+</label>
+
+<input
+type="password"
+id="signup-password"
+placeholder="Minimum 6 Characters"
+required>
+
+</div>
+
+<div
+id="signup-error"
+class="auth-error hidden">
+
+</div>
+
+<button
+type="submit"
+class="btn btn-primary btn-block">
+
+Create Account
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ===================================
+            VAULT SECTION
+=================================== -->
+
+<section
+id="vault"
+class="vault-section container hidden">
+
+<div class="section-header">
+
+<h2
+data-en="Create A Memory"
+data-hi="नई स्मृति जोड़ें">
+
+Create A Memory
+
+</h2>
+
+<p>
+
+Capture your happiest,
+deepest and unforgettable moments.
+
+</p>
+
+</div>
+
+<div class="vault-grid">
+
+<form
+id="memory-form"
+class="vault-card">
+
+<div class="form-group">
+
+<label>
+
+Memory Title
+
+</label>
+
+<input
+type="text"
+id="memory-title"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Journal
+
+</label>
+
+<textarea
+id="memory-desc"
+rows="6"
+required>
+
+</textarea>
+
+</div>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>
+
+Date
+
+</label>
+
+<input
+type="date"
+id="memory-date"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Mood
+
+</label>
+
+<select
+id="memory-mood">
+
+<option>Joyous ✨</option>
+
+<option>Peaceful 🍃</option>
+
+<option>Nostalgic ⏳</option>
+
+<option>Melancholic 🌧️</option>
+
+<option>Grateful ❤️</option>
+
+</select>
+
+</div>
+
+</div>
+
+           <section id="profile" class="profile-section container hidden">
             <div class="profile-card">
+
+                <div class="profile-cover"></div>
+
                 <div class="profile-avatar-container">
                     <div class="profile-avatar" id="profile-avatar-letters">A</div>
                 </div>
+
                 <h2 id="profile-display-name">User Account</h2>
                 <p id="profile-email-display">user@domain.com</p>
+
                 <div class="profile-meta-grid">
+
                     <div class="meta-box">
                         <span class="meta-val" id="profile-stat-count">0</span>
-                        <span class="meta-lbl" data-en="Memories Captured" data-hi="कैप्चर की गई यादें">Memories Captured</span>
+                        <span class="meta-lbl"
+                              data-en="Memories"
+                              data-hi="यादें">
+                            Memories
+                        </span>
                     </div>
+
                     <div class="meta-box">
-                        <span class="meta-val" id="profile-security-status">Active</span>
-                        <span class="meta-lbl" data-en="Vault Status" data-hi="तिजोरी की स्थिति">Vault Status</span>
+                        <span class="meta-val" id="profile-security-status">
+                            Active
+                        </span>
+                        <span class="meta-lbl"
+                              data-en="Vault Status"
+                              data-hi="स्थिति">
+                            Vault Status
+                        </span>
                     </div>
+
                 </div>
-                <button id="profile-logout-btn" class="btn btn-danger" data-en="Sever Session (Logout)" data-hi="सत्र समाप्त करें (लॉगआउट)">Sever Session (Logout)</button>
+
+                <button
+                    id="profile-logout-btn"
+                    class="btn btn-danger">
+
+                    Logout
+
+                </button>
+
             </div>
         </section>
+
     </main>
 
+
+    <!-- EDIT MEMORY MODAL -->
+
     <div id="edit-modal" class="modal-overlay hidden">
+
         <div class="modal-card">
-            <h3 data-en="Refine Memory Artifact" data-hi="स्मृति विरूपण को परिष्कृत करें">Refine Memory Artifact</h3>
+
+            <h3
+                data-en="Edit Memory"
+                data-hi="याद संपादित करें">
+                Edit Memory
+            </h3>
+
             <form id="edit-form">
+
                 <input type="hidden" id="edit-id">
+
                 <div class="form-group">
-                    <label for="edit-title" data-en="Title" data-hi="शीर्षक">Title</label>
-                    <input type="text" id="edit-title" required>
+                    <label>Edit Title</label>
+                    <input
+                        type="text"
+                        id="edit-title"
+                        required>
                 </div>
+
                 <div class="form-group">
-                    <label for="edit-desc" data-en="Journal Text" data-hi="डायरी पाठ">Journal Text</label>
-                    <textarea id="edit-desc" rows="4" required></textarea>
+                    <label>Description</label>
+
+                    <textarea
+                        id="edit-desc"
+                        rows="5"
+                        required>
+                    </textarea>
                 </div>
+
                 <div class="form-row">
+
                     <div class="form-group">
-                        <label for="edit-date" data-en="Date" data-hi="तिथि">Date</label>
-                        <input type="date" id="edit-date" required>
+                        <label>Date</label>
+
+                        <input
+                            type="date"
+                            id="edit-date"
+                            required>
                     </div>
+
                     <div class="form-group">
-                        <label for="edit-mood" data-en="Mood" data-hi="मनोदशा">Mood</label>
-                        <select id="edit-mood" required>
-                            <option value="Melancholic">Melancholic 🌧️</option>
-                            <option value="Nostalgic">Nostalgic ⏳</option>
-                            <option value="Peaceful">Peaceful 🍃</option>
-                            <option value="Joyous">Joyous ✨</option>
-                            <option value="Grateful">Grateful ❤️</option>
+
+                        <label>Mood</label>
+
+                        <select id="edit-mood">
+
+                            <option value="Melancholic">
+                                Melancholic 🌧️
+                            </option>
+
+                            <option value="Nostalgic">
+                                Nostalgic ⏳
+                            </option>
+
+                            <option value="Peaceful">
+                                Peaceful 🍃
+                            </option>
+
+                            <option value="Joyous">
+                                Joyous ✨
+                            </option>
+
+                            <option value="Grateful">
+                                Grateful ❤️
+                            </option>
+
                         </select>
+
                     </div>
+
                 </div>
+
                 <div class="modal-actions">
-                    <button type="button" id="edit-cancel-btn" class="btn" data-en="Discard Changes" data-hi="बदलाव रद्द करें">Discard Changes</button>
-                    <button type="submit" class="btn btn-primary" data-en="Update Architecture" data-hi="संरचना अपडेट करें">Update Architecture</button>
+
+                    <button
+                        type="button"
+                        id="edit-cancel-btn"
+                        class="btn">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                        Save Changes
+
+                    </button>
+
                 </div>
+
             </form>
+
         </div>
+
     </div>
 
+
     <footer class="footer">
-        <p>&copy; 2026 ANTIM. <span data-en="Some memories never leave." data-hi="कुछ यादें कभी नहीं छोड़तीं।">Some memories never leave.</span></p>
+
+        <p>
+
+            © 2026 ANTIM
+
+            <br>
+
+            <span
+                data-en="Some memories never leave."
+                data-hi="कुछ यादें कभी नहीं छोड़तीं।">
+
+                Some memories never leave.
+
+            </span>
+
+        </p>
+
     </footer>
 
+
+    <!-- Firebase Import Map -->
+
     <script type="importmap">
-        {
-            "imports": {
-                "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
-                "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
-                "firebase/firestore": "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js",
-                "firebase/storage": "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js"
-            }
-        }
+    {
+      "imports": {
+        "firebase/app":"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+        "firebase/auth":"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+        "firebase/firestore":"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js",
+        "firebase/storage":"https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js"
+      }
+    }
     </script>
+
+
+    <!-- Particles -->
+
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script type="module" src="assets/js/app.js"></script> 
+
+    <!-- Firebase -->
+
+    <script type="module" src="assets/js/firebase-config.js"></script>
+    <script type="module" src="assets/js/auth.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
+
 </body>
-</html>
+</html> 
+                
